@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <!-- 먼저 작성 되어야 한다. 위에서 아래로 실행되기 때문에 jquery가 먼저 로딩되어 있어야 한다. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function basic() {
+        //배열 기본
+        const arr1 = ["Java", "JavaScript", "Vue"];
+        arr1[0] = "spring";
+        console.log(arr1.length);
+        console.log("");
+        for (let i = 0; i < arr1.length; i++) {
+          console.log(arr1[i]);
+        }
+        console.log("");
+        for (let item of arr1) {
+          //배열일때 of, 객체일때 in
+          console.log(item);
+        }
+      }
+
+      //자바스크립트의 배열은 자바의 리스트와 비슷하다.
+
+      function appendItem() {
+        const arr = [];
+        arr.push("html");
+        arr.push("css");
+        for (let item of arr) {
+          console.log(item);
+        }
+      }
+
+      function RemoveAndInsertItem() {
+        const arr = ["Banana", "Orange", "Apple", "Mango"];
+        // 항목 삭제
+        // arr.splice(2,1);
+        // console.log(arr);
+
+        // 항목 삽입
+        arr.splice(2, 0, "Lemon", "kiwi");
+        console.log(arr);
+      }
+
+      function concatArray() {
+        const arr4 = ["Cecilie", "Lone"];
+        const arr5 = ["Emil", "Tobias", "Linus"];
+        const arr = arr4.concat(arr5);
+        console.log(arr);
+        console.log(arr4);
+      }
+
+      //array.filter(function(currentValue, index, arr), thisValue)
+      //function 자리에 lambda식을 많이 사용
+
+      function filterItem() {
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = arr1.filter((item) => item % 2 === 0); //람다식에서 return되는 것은 배열
+        const arr3 = arr1.filter(function (item) {
+          return item % 2 === 0;
+        });
+        console.log(arr3);
+
+        const arr4 = [
+          { bno: 1, title: "제목1", writer: "홍길동" },
+          { bno: 2, title: "제목2", writer: "홍길서" },
+          { bno: 3, title: "제목3", writer: "홍길남" },
+          { bno: 4, title: "제목4", writer: "홍길서" },
+          { bno: 5, title: "제목5", writer: "홍길북" },
+        ];
+
+        const arr5 = arr4.filter((item) => (item["writer"] === "홍길서"));
+        console.log(arr5);
+      }
+
+      function findItem(){
+        const arr = [
+          { bno: 1, title: "제목1", writer: "홍길동" },
+          { bno: 2, title: "제목2", writer: "홍길서" },
+          { bno: 3, title: "제목3", writer: "홍길남" },
+          { bno: 4, title: "제목4", writer: "홍길서" },
+          { bno: 5, title: "제목5", writer: "홍길북" },
+        ];
+
+        let board = arr.find(item => imtem.bno===3);
+        console.log(board);
+
+        let index = arr.find(item => imtem.bno===3);
+        console.log(index);
+      }
+
+      function handleEachItem(){
+        const arr = [
+          { bno: 1, title: "제목1", writer: "홍길동" },
+          { bno: 2, title: "제목2", writer: "홍길서" },
+          { bno: 3, title: "제목3", writer: "홍길남" },
+          { bno: 4, title: "제목4", writer: "홍길서" },
+          { bno: 5, title: "제목5", writer: "홍길북" },
+        ];
+
+        for(let i=0; i<arr.length; i++){
+            console.log(arr[i]);
+        }
+
+        //array.forEach(function(currentValue, index, arr), thisValue)
+        
+        for(let board of arr){
+            console.log(board);
+        }
+
+        arr.forEach(item => {
+            for(let fieldName in item){
+                console.log(`${fieldName}:`, board[fieldName]);
+            }
+            console.log("");
+        });
+      }
+
+      //array.map(function(currentValue, index, arr), thisValue)
+
+      function mapItem(){
+          const arr1 = [1,2,3,4,5];
+          const arr2 = arr1.map(item => item*10);
+          console.log(arr2);
+
+          const arr3 = [
+          { bno: 1, title: "제목1", writer: "홍길동" },
+          { bno: 2, title: "제목2", writer: "홍길서" },
+          { bno: 3, title: "제목3", writer: "홍길남" },
+          { bno: 4, title: "제목4", writer: "홍길서" },
+          { bno: 5, title: "제목5", writer: "홍길북" },
+        ];
+
+        const arr4 = arr3.map(item => item.title);
+        console.log(arr4);
+
+        const arr5 = arr3.map(item => ({...item, writer:"홍길동", date:new Date().toLocaleDateString()}));
+        console.log(arr5);
+      }
+
+
+      //array.sort(compareFunction) <<매개변수에 정렬 조건이 있는 함수를 받게 되어있다. 
+
+      function sortItem(){
+        const arr1 = ["Banana", "Orange", "Apple", "Mango"];
+        arr1.sort();    //하나의 값인 경우 정렬 조건을 매개변수에 명시해 주지 않아도 된다.
+        console.log(arr1);
+        arr1.reverse();     //현재에서 거꾸로 바꿔주기 때문에 내림차순 하려면 sort먼저 해주고(오름차순) reverse해주면 내림차순 된다. 
+        console.log(arr1);
+
+        const arr2 = [
+        {bno:2, title:"제목2", writer:"홍길서"},
+        {bno:5, title:"제목5", writer:"홍길북"},
+        {bno:3, title:"제목3", writer:"홍길남"},
+        {bno:1, title:"제목1", writer:"홍길동"},
+        {bno:4, title:"제목4", writer:"홍길서"},
+      ];
+        //오름차순
+        arr2.sort((item1, item2) => itme1.bno-item2.bno);
+        console.log(arr2);
+
+
+        //내림차순
+        arr2.sort((item1, item2) => -(item1.bno-item2.bno));
+        console.log(arr2);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header">.Array(배열)</div>
+
+      <div class="card-body">
+        <button onclick="basic()" class="btn btn-info btn-sm mb-2">기본</button><br />
+        <button onclick="addNewItem()" class="btn btn-info btn-sm mb-2">새로운 항목 추가</button><br />
+        <button onclick="RemoveAndInsertItem()" class="btn btn-info btn-sm mb-2">항목 제거 및 삽입</button><br />
+        <button onclick="concatArray()" class="btn btn-info btn-sm mb-2">새로운 배열로 합치기</button><br /><!--concat : 합치다. -->
+        <button onclick="filterItem()" class="btn btn-info btn-sm mb-2">필터링 후 새로운 배열 생성</button><br />
+        <button onclick="findItem()" class="btn btn-info btn-sm mb-2">항목 찾기</button><br />
+        <button onclick="handleEachItem()" class="btn btn-info btn-sm mb-2">항목 일괄 처리</button><br />
+        <button onclick="mapItem()" class="btn btn-info btn-sm mb-2">항목을 다른 항목으로 매핑한 배열 생성</button><br />
+        <button onclick="sortItem()" class="btn btn-info btn-sm mb-2">항목 정렬</button><br />
+      </div>
+    </div>
+  </body>
+</html>

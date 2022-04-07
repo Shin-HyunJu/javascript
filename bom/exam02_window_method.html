@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script> <!-- 먼저 작성 되어야 한다. 위에서 아래로 실행되기 때문에 jquery가 먼저 로딩되어 있어야 한다. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" ></script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            Window Method - Dialog(팝업창??)
+        </div>
+        
+        <div class="card-body">
+            <a href="javascript:showAlert()" class="btn btn-info btn-sm mr-2">Alert</a>
+            <a href="javascript:showConfirm()" class="btn btn-info btn-sm mr-2">Confirm</a>
+            <a href="javascript:showPrompt()" class="btn btn-info btn-sm mr-2">Prompt</a>
+        </div>
+
+        <script>
+            function showAlert(){
+                window.alert("알림 메세지...");
+            }
+            function showConfirm(){ //alert과 다르게 boolean타입의 리턴값을 갖는다. 
+                let result = window.confirm("공부할래 말래?");
+                console.log(result);
+            }
+            function showPrompt(){
+                let result = window.prompt("하고싶은 말을 적어주세요.");
+                console.log(result);
+            }
+        </script>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Window Method - setInterval(), setTimeout()
+        </div>
+        
+        <div class="card-body">
+            <a href="javascript:startIntervalRun()" class="btn btn-info btn-sm mr-2">주기적으로 실행</a>
+            <a href="javascript:stopIntervalRun()" class="btn btn-info btn-sm mr-2">주기적으로 실행하는 것을 취소</a>
+            <hr/>
+            <a href="javascript:startTimeoutRun()" class="btn btn-info btn-sm mr-2">주어진 시간이 경과하면 실행</a>
+            <a href="javascript:stopTimeoutRun()" class="btn btn-info btn-sm mr-2">주어진 시간이 경과하면 실행하는 것을 취소</a>
+        </div>
+
+        <script>
+            //setInterval(function, milliseconds, param1, param2, ...)
+            function startIntervalRun(){
+                taskId1 = window.setInterval(function(){
+                    console.log("running....");                    
+                }, 2000)
+            }
+            function stopIntervalRun(){
+                window.clearInterval(taskId1);
+            }
+
+            //setInterval(function, milliseconds, param1, param2, ...)
+            function startTimeoutRun(){
+                taskId2 = window.setTimeout(function() {
+                    console.log("running ...");
+                },5000)
+            }
+            function stopTimeoutRun(){
+                //5초가 지나기 전에 이 함수를 작동시켜서 startTimeoutRun를 취소시키기
+                window.clearTimeout(taskId2);
+            }
+        </script>
+    </div>
+</body>
+</html>

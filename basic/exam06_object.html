@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <!-- 먼저 작성 되어야 한다. 위에서 아래로 실행되기 때문에 jquery가 먼저 로딩되어 있어야 한다. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      //객체 생성. 객체 생성 블록 안에서는 :을 사용하고 생성자 정의 안에서는 대입연산자인 =를 사용해야 한다. 
+      const myCar = {
+        //Field
+        name: "그랜저",
+        price: 50000000,
+        speed: 0,
+
+        //Method(1)
+        start: function () {
+          console.log("시동을 겁니다.");
+        },
+        setSpeed: function (value) {
+          this.speed = value;
+          console.log(this.speed + "로 달립니다.");
+        },
+        getSpeed: function () {
+          console.log(this);
+          return this.speed;
+        },
+
+        //Method(2)
+        run: () => {
+          console.log("달립니다.");
+        },
+
+        //화살표 함수는 this 키워드 사용하지 않도록 함
+        //this -> windows 객체 참조
+        getName: () => {
+          return this.name;
+        },
+
+        useLambda: function (fun) {
+          //데이터
+          let x = 5;
+          //처리부
+          fun(x);
+        },
+
+        //Method(방법 3)
+        //2015년에 새로 생긴 문법
+        brake(){
+            console.log("브레이크를 사용합니다.")
+            console.log(this);  //this 사용 가능
+            this.speed=0;
+        }
+      };
+
+      //객체 사용
+      console.log(myCar.name);
+      console.log(myCar.price);
+      myCar.speed = 60;
+      console.log(myCar.speed);
+
+      myCar.start();
+      myCar.setSpeed(60);
+
+      console.log(myCar.getSpeed);
+
+      myCar.run();
+      console.log(myCar.getName());
+
+      myCar.useLambda((x) => console.log(x + "를 방법 1로 처리"));
+
+      myCar.brake();
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header"></div>
+
+      <div class="card-body"></div>
+    </div>
+  </body>
+</html>

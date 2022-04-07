@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script> <!-- 먼저 작성 되어야 한다. 위에서 아래로 실행되기 때문에 jquery가 먼저 로딩되어 있어야 한다. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" ></script>
+
+    <script>
+        //생성자 정의
+        function Car(name, price) {
+            this.name = name;   //단독으로 정의된 함수에서는 this를 사용할 수 없다. 생성자와의 차이점!
+            this.price = price;
+
+            this.start = function(){
+                console.log(this.name+"의 시동을 겁니다.");
+            }
+        }
+
+        //생성자를 호출해서 객체(인스턴스) 생성
+        let myCar = new Car("포르쉐", 200000000);
+        console.log(myCar.name, myCar.price);
+        myCar.start();
+
+        //생성자를 호출해서 다른 객체(인스턴스) 생성
+        let yourCar = new Car("벤츠", 150000000);
+        console.log(yourCar.name, yourCar.price);
+        yourCar.start();
+
+    </script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            Function 을 이용한 생성자 정의
+        </div>
+        
+        <div class="card-body">
+        </div>
+    </div>
+</body>
+</html>

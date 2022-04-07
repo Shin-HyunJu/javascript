@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script></script>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header text-center">Window Method - Dialog</div>
+
+      <div class="card-body">
+        <a href="javascript:showAlert();" class="btn btn-info btn-sm mr-2">Alert()</a>
+        <a href="javascript:showConfirm();" class="btn btn-info btn-sm mr-2">Confirm()</a>
+        <a href="javascript:showPrompt();" class="btn btn-info btn-sm mr-2">Prompt()</a>
+      </div>
+      <script>
+        function showAlert() {
+          window.alert("경고성 알림 메시지 ... ");
+        }
+
+        function showConfirm() {
+          let result = window.confirm("쉴래 말래");
+          console.log(result);
+        }
+
+        function showPrompt() {
+          let result = window.prompt("하고 싶은 말 : ");
+          console.log(result);
+        }
+      </script>
+    </div>
+
+    <div class="card">
+      <div class="card-header text-center">Window Method - setInterval(), setTimeout()</div>
+
+      <div class="card-body">
+        <a href="javascript:startIntervalRun();" class="btn btn-info btn-sm mr-2">주기적으로 실행</a>
+        <a href="javascript:stopIntervalRun();" class="btn btn-info btn-sm mr-2">주기적으로 실행 취소</a>
+        <hr />
+        <a href="javascript:startTimeoutRun();" class="btn btn-info btn-sm mr-2">주어진 시간이 경과하면 실행</a>
+        <a href="javascript:stopTimeoutRun();" class="btn btn-info btn-sm mr-2">주어진 시간이 경과하면 실행하는 것을 취소</a>
+      </div>
+
+      <script>
+        function startIntervalRun() {
+          taskId1 = window.setInterval(function () {
+            console.log("running ...");
+          }, 2000);
+        }
+
+        function stopIntervalRun() {
+          window.clearInterval(taskId1);
+        }
+
+        function startTimeoutRun() {
+          taskId2 = window.setTimeout(function () {
+            console.log("running timeout ...");
+          }, 5000);
+        }
+
+        function stopTimeoutRun() {
+          window.clearTimeout(taskId2);
+        }
+      </script>
+    </div>
+
+    <div class="card">
+      <div class="card-header text-center">디지털 시계</div>
+
+      <div class="card-body">
+        <div class="display-3 text-center mb-3" style="background-color: black; width: 450px; height: 100px; border-radius: 10px;">
+          <div id="time" style="color: white"></div>
+        </div>
+        <input type="button" onclick="timeRun();" class="btn btn-info btn-sm mr-2" id="start" value="시작" />
+        <input type="button" onclick="timeStop();" class="btn btn-info btn-sm mr-2" id="stop" value="중지" />
+      </div>
+
+      <script>
+        const start = document.getElementById("start");  
+        const stop = document.getElementById("stop");
+        taskId1 = window.setInterval(function () {
+            var time = document.getElementById("time");
+            time.innerHTML = new Date().toLocaleTimeString();
+            start.disabled = false;
+        }, 1000);
+        
+        function timeRun() {
+            taskId1 = window.setInterval(function () {
+            var time = document.getElementById("time");
+            time.innerHTML = new Date().toLocaleTimeString();
+          }, 1000);
+          start.disabled = true;
+          stop.disabled = false;
+        }
+
+        function timeStop() {
+          window.clearInterval(taskId1);
+          console.log(taskId1);
+          start.disabled = false;
+          stop.disabled = true;
+        }
+
+      </script>
+    </div>
+
+    <div class="card">
+        <div class="card-header text-center">stop watch</div>
+  
+        <div class="card-body">
+          <div class="display-3 text-center " style="background-color: black; width: 300px; height: 100px; border-radius: 10px;">
+            <div id="time1" style="color: white">00:00:00</div>
+          </div>
+          <input type="button" onclick="startWatch();" class="btn btn-info btn-sm mr-2" id="start" value="시작" />
+          <input type="button" onclick="stopWatch();" class="btn btn-info btn-sm mr-2" id="stop" value="중지" />
+          <input type="button" onclick="resetWatch();" class="btn btn-info btn-sm mr-2" id="stop" value="Reset" />
+        </div>
+
+        <script>
+            var time = document.getElementById("time1");
+            function startWatch(){
+                startTime = new Date();
+                timer = window.setInterval(function(){
+                    now = new Date();
+                    timeWatch = ((now - startTime) / 1000).toString();
+                    if(timeWatch.length <= 5){
+                        time.innerHTML =  "00:0" + timeWatch.substr(0, 4);
+                    } else{
+                        time.innerHTML =  "00:" + timeWatch.substr(0, 5);
+                    }
+                    
+                }, 10);    
+            }
+
+            function stopWatch(){
+                window.clearInterval(timer);
+            }
+            
+            function resetWatch() {
+                time.innerHTML = "00:00:00";
+            }
+
+        </script>
+      </div>
+  </body>
+</html>
